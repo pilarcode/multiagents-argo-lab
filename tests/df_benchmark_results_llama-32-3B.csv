@@ -1,0 +1,11 @@
+question,expected_sql,predicted_sql,latency
+Get all records from the Stock table,SELECT * FROM Stock;,SELECT S.* FROM Stock S INNER JOIN Orders O ON S.id = O.id WHERE O.quantity > 0,5.0706658363342285
+List the IDs of products in stock with their current quantity,"SELECT id, current_stock_quantity FROM Stock;",SELECT S.id FROM Stock AS S INNER JOIN Orders AS O ON S.id = O.id WHERE O.quantity > 0,5.972474575042725
+Get the average unit price of all products in stock,SELECT AVG(unit_price) AS avg_unit_price FROM Stock;,SELECT S.id FROM Stock AS S JOIN Orders AS O ON S.id = O.id WHERE O.quantity > 0,4.506685972213745
+"Find products with more than 10,000 units in stock","SELECT id, current_stock_quantity FROM Stock WHERE current_stock_quantity > 10000;",SELECT S.* FROM Stock AS S JOIN Orders AS O ON S.id = O.id WHERE O.quantity > 0,5.4079179763793945
+Get the total quantity of products in stock,SELECT SUM(current_stock_quantity) AS total_stock FROM Stock;,SELECT S.* FROM Stock AS S JOIN Orders AS O ON S.id = O.id WHERE S.current_stock_quantity > 0,5.147977113723755
+List orders placed in the year 2023,"SELECT * FROM Orders WHERE strftime('%Y', date) = '2023';",SELECT T1.id FROM Stock AS T1 JOIN Orders AS T2 ON T1.id = T2.id WHERE T2.quantity > 0,6.076564073562622
+Get the product with the highest maximum lead time,"SELECT id, maximum_lead_time_days FROM Stock ORDER BY maximum_lead_time_days DESC LIMIT 1;",SELECT T2.id FROM Orders AS T1 JOIN Stock AS T2 ON T1.quantity > 0 AND T1.id = T2.id,6.019530296325684
+List products whose unit price is above the average,"SELECT id, unit_price FROM Stock WHERE unit_price > (SELECT AVG(unit_price) FROM Stock);","SELECT s.* FROM Stock AS s JOIN Orders AS o ON FIND_IN_SET(s.id, o.quantity) GROUP BY s.id",4.888183116912842
+Get the total number of orders per product,"SELECT id, COUNT(*) AS total_orders FROM Orders GROUP BY id;",SELECT id FROM Stock WHERE units != 'Out of Stock' AND current_stock_quantity > 0,4.148717880249023
+List products in stock that have been ordered at least once,"SELECT DISTINCT s.id, s.current_stock_quantity FROM Stock s JOIN Orders o ON s.id = o.id;",SELECT S.id FROM Orders O JOIN Stock S ON O.id = S.id WHERE S.current_stock_quantity > 0,4.865434169769287
