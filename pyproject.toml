@@ -1,0 +1,20 @@
+[project]
+name = "multiagents-lab"
+version = "0.1.0"
+description = "This is a lab to explore sql agents"
+authors = [{ name = "Pilar Madariaga", email = "pilar.madariaga@gft.com" }]
+readme = "README.md"
+keywords = ['python']
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "agno>=1.1.0",
+    "groq>=0.18.0",
+    "huggingface-hub>=0.28.1",
+    "ipykernel>=6.29.5",
+    "ipywidgets>=8.1.5",
+    "ollama>=0.4.7",
+    "pandas>=2.2.3",
+    "python-dotenv>=1.0.1",
+    "sqlalchemy>=2.0.38",
+]
+
