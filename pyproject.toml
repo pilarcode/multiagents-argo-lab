@@ -8,6 +8,9 @@ keywords = ['python']
 requires-python = ">=3.9,<4.0"
 dependencies = [
     "agno>=1.1.0",
+    "composio-agno>=0.7.2",
+    "duckduckgo-search>=7.3.2",
+    "google-search-results>=2.4.2",
     "groq>=0.18.0",
     "huggingface-hub>=0.28.1",
     "ipykernel>=6.29.5",
