@@ -1,7 +1,7 @@
 [project]
-name = "lab"
+name = "multiagents"
 version = "0.1.0"
-description = "This is a lab to explore multiagents with argo"
+description = "This is a lab to explore sql agents"
 authors = [{ name = "Pilar Madariaga", email = "pilar.madariaga@gft.com" }]
 readme = "README.md"
 keywords = ['python']

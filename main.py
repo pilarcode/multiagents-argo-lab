@@ -1,46 +1,52 @@
 import os
 import gradio as gr
 from dotenv import load_dotenv
-from lab.agents import MultiAgentTeam
-from lab.database import create_database
-from lab.utils import logger    
+from multiagents.agent import MultiAgentTeam
+from multiagents.db.database import init_database
+from multiagents.db.models import Customer
+from multiagents.utils import logger 
 
 log = logger.get_logger(__name__)
+log = logger.init(level="DEBUG", save_log=True)
 
-# load the .env file
+
 _ = load_dotenv()
-PLACE_HOLDER = os.getenv("PLACE_HOLDER")
-BOT_ICON = os.getenv("BOT_ICON")
-USER_ICON = os.getenv("USER_ICON")
-SQLITE_DB_PATH = os.getenv("SQLITE_DB_PATH")
-SQLITE_DATA_SCRIPT = os.getenv("SQLITE_DATA_SCRIPT")
-SQLITE_SCHEMA_SCRIPT = os.getenv("SQLITE_SCHEMA_SCRIPT")
+
 UI_PORT: int = int(os.getenv("UI_PORT", "8046"))
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 
+
+
+PLACE_HOLDER = "¡Hola! ¿En qué puedo ayudarte?"
+BOTH_ICON = "app/assets/bot.png"
+USER_ICON = "app/assets/user.png"
 
 # Initialize the agents
 multi_agent_team = MultiAgentTeam()
 
-def respond(question, messages):
+def respond(question, history):
     """ Respond to user input. """
     return  multi_agent_team.request(question)
 
 chatbot = gr.ChatInterface(
     fn=respond,
     type="messages",
-    chatbot=gr.Chatbot(elem_id="chatbot", height="auto", avatar_images=[USER_ICON, BOT_ICON]),
-    title="The Fragance Lab🌺",
+    chatbot=gr.Chatbot(elem_id="chatbot", height="auto", avatar_images=[USER_ICON, BOTH_ICON]),
+    title="Team Leader Agent with Agno",
     textbox=gr.Textbox(placeholder=PLACE_HOLDER, container=False, scale=7),
     submit_btn="Enviar",
-    theme=gr.themes.Default(primary_hue="red", secondary_hue="pink", text_size="lg", radius_size="lg"),
-    examples=["Get the product with the highest price 🎁", "What is the fragrance of the day 💕?"],
+    theme=gr.themes.Default(primary_hue="blue", secondary_hue="indigo"),
+    examples=["What is the latest news?", "Who is Thomas Edison?", "How do I make chicken and galangal in coconut milk soup"],
 )
 
 if __name__ == "__main__":
+
     
-    log.info("Creating the database...")
-    create_database(schema_sql_path=SQLITE_SCHEMA_SCRIPT, data_sql_path=SQLITE_DATA_SCRIPT, db_path=SQLITE_DB_PATH)
-    
-    log.info("Starting the UI...")
-    chatbot.launch( server_port=UI_PORT, debug=True)
+    # session = init_database()
+    # customers = session.query(Customer).all()  # Esto es equivalente a un SELECT * FROM customers
+    # for customer in customers:
+    #     print(customer.FirstName, customer.LastName, customer.Email)
+     
+    log.info("Starting UI...")
+    chatbot.launch(server_port=UI_PORT)
