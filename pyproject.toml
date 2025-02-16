@@ -2,7 +2,7 @@
 name = "multiagents"
 version = "0.1.0"
 description = "This is a lab to explore sql agents"
-authors = [{ name = "Pilar Madariaga", email = "pilar.madariaga@gft.com" }]
+authors = [{ name = "Pilar Madariaga", email = "pilar@myemail.com" }]
 readme = "README.md"
 keywords = ['python']
 requires-python = ">=3.9,<4.0"

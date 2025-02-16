@@ -36,7 +36,7 @@ chatbot = gr.ChatInterface(
     title="Team Leader Agent with Agno",
     textbox=gr.Textbox(placeholder=PLACE_HOLDER, container=False, scale=7),
     submit_btn="Enviar",
-    theme=gr.themes.Default(primary_hue="blue", secondary_hue="indigo"),
+    theme=gr.themes.Default(primary_hue="pink", secondary_hue="pink"),
     examples=["What is the latest news?", "Who is Thomas Edison?", "How do I make chicken and galangal in coconut milk soup"],
 )
 

@@ -1,19 +1,5 @@
 # Multiagent system 
-
-Se  ha implementado un prototipo de sistema multiagentes con 3 agentes. 
-- Un agente permite la búsqueda en internet, 
-- Un agente convierte lenguaje natural a queries SQL
-- Un agente responde preguntas en base un documento PDF.  
-
-Se ha implementado el prototipo en 1día y en menos de 300 líneas de código.  
-[Agno](https://github.com/agno-agi/agno) es un framework que agiliza  el prototipado de sistemas multiagentes con una curva de aprendizaje baja.
-
-![diagram](./docs/diagram.png)
-
-## ◻️ Demo
-![demo](./docs/demo.gif)
-
-
+This is a multiagent system built using [uv](https://docs.astral.sh/uv/getting-started/installation/#standalone-installer) and [agno](https://docs.agno.com/).
 
 
 ## ◻️ Setup 
