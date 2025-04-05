@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     
     # session = init_database()
-    # customers = session.query(Customer).all()  # Esto es equivalente a un SELECT * FROM customers
+    # customers = session.query(Customer).all()  
     # for customer in customers:
     #     print(customer.FirstName, customer.LastName, customer.Email)
      
